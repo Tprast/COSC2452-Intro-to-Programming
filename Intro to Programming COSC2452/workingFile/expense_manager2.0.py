@@ -29,9 +29,18 @@ def get_str(prompt):
     return value
 
 def get_float(prompt):
+    value=None
+    while(value==None):
+        try:
+            value=float(get_str(prompt))
+        except:
+            prompt="That wasn't right. Re-Enter: "    
+    return value
+
+def get_positive_float(prompt):
     value=get_float(prompt)
     while(value<0):
-        value=get_float("Input must be positive. Re-enter:")
+        value=get_float("Input must be positive. Re-enter: ")
     return value
 
 def get_menu_choice():
@@ -47,7 +56,7 @@ def get_menu_choice():
 
     menu=menu.lower()
     choice=get_str("Enter Choice: ").lower()
-    while not ["+choice+"] in menu:
+    while not "["+choice+"]" in menu:
         choice=get_str(choice+" was an invalid choice! Re-enter: ").lower()
 
     return choice
@@ -77,7 +86,7 @@ def add_expense_via_menu():
     expense_amount=get_positive_float("Enter expense amount: ")
     sys.stdout.write("\n")
 
-    add_expense(expense_data,expense_name,expense_amount)
+    add_expense(expense_date,expense_name,expense_amount)
 
 def remove_expense():
     sys.stdout.write("--------------\n")
